@@ -18,7 +18,7 @@
         		</c:when>
         		<%-- Sinon, affichage du tableau. --%>
         		<c:otherwise>
-        			<form method="post" action="<c:url value="/liste-clients"/>"><!-- <url-pattern>/enregistrement-client</url-pattern> -->
+        			<form method="post" action="<c:url value="/liste-clients"/>"><!-- <url-pattern>/liste-clients</url-pattern> -->
 		        		<table>
 		        		
 			        		<thead>
@@ -28,6 +28,7 @@
 									<th>Adresse</th>
 									<th>Téléphone</th>
 									<th>Email</th>
+									<th>Image</th>
 									<th class="action">Action</th>
 								</tr>
 			        		</thead>
@@ -40,6 +41,7 @@
 										<td><c:out value="${ entry.value['adresseClient'] }" /></td>
 										<td><c:out value="${ entry.value['telephoneClient'] }" /></td>
 										<td><c:out value="${ entry.value['emailClient'] }" /></td>
+										<td><input type="submit" class="imageLink" name="imageLink" value="<c:out value="${ entry.value['imageClient'] }" />" alt="Voir l'image"></td>
 										<td><input type="image" class="checkCase" name="clientSupprime" value="<c:out value="${ entry.key }"/>" alt="Cliquez pour effacer le client" src="images/red-cross.png"></td>
 									</tr>
 								</c:forEach>

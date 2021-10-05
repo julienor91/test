@@ -10,6 +10,7 @@ public class Client {
 	private String adresseClient;
 	private String telephoneClient;
 	private String emailClient;
+	private String imageClient;
 	
 	/* *
 	 * ********** CONSTRUCTORS **************************************************
@@ -19,13 +20,14 @@ public class Client {
 	}
 	
 	public Client(String nomClient, String prenomClient, String adresseClient,
-			String telephoneClient, String emailClient) {
+			String telephoneClient, String emailClient, String imageClient) {
 		super();
 		this.nomClient = nomClient;
 		this.prenomClient = prenomClient;
 		this.adresseClient = adresseClient;
 		this.telephoneClient = telephoneClient;
 		this.emailClient = emailClient;
+		this.imageClient = imageClient;
 	}
 	
 	/* *
@@ -49,6 +51,10 @@ public class Client {
 
 	public String getEmailClient() {
 		return emailClient;
+	}
+	
+	public String getImageClient() {
+		return imageClient;
 	}
 
 	/* *
@@ -74,6 +80,10 @@ public class Client {
 		this.emailClient = emailClient;
 	}
 	
+	public void setImageClient(String imageClient) {
+		this.imageClient = imageClient;
+	}
+	
 	/* *
 	 * ********** TOSTRING METHOD **************************************************
 	 * */
@@ -82,7 +92,7 @@ public class Client {
 		return "Client [nomClient=" + nomClient + ", prenomClient="
 				+ prenomClient + ", adresseClient=" + adresseClient
 				+ ", telephoneClient=" + telephoneClient + ", emailClient="
-				+ emailClient + "]";
+				+ emailClient + ", imageClient=" + imageClient + "]";
 	}
 	
 }

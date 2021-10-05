@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.myProject.regularExpression.Regex;
 import com.sdzee.tp.beans.Client;
 import com.sdzee.tp.beans.Commande;
+import com.sdzee.tp.servlets.CreationClient;
 
 /* *
  * Ajout de "final" car cette classe ne peut être héritée par une autre classe.
@@ -43,6 +44,8 @@ public final class CreationCommandeForm {
     private static final String FIELD_EMPTY_SENTENCE = "Attention ce champ est vide !";
     private static final Double ERROR_ORDER_AMOUNT_FIELD = -1D;
     
+    public static final String CHEMIN = "chemin";
+    
 	private Map<String, String> errors = new HashMap<String, String>();
 	
 	/* *
@@ -61,9 +64,18 @@ public final class CreationCommandeForm {
 		Client client = new Client();
 		
 		/* *
+	     * Lecture du paramètre "chemin" passé à la servlet CreationClient via la déclaration dans le web.xml
+	     * <param-value>/Users/julienorrado/Desktop/</param-value>
+	     * Soit => /Users/julienorrado/Desktop/
+	     * On créait donc un objet simplement pour récupérer le chemin.
+	     * */
+		CreationClient creationClient = new CreationClient();
+	    String chemin = creationClient.recuperationDuChemin(request);
+		
+		/* *
 		 * Validation des données + création du bean client. 
 		 * */
-		client = creationClientForm.enregistrementClient(request);
+		client = creationClientForm.enregistrementClient(request, chemin);
 		/* *
 		 * Récupération du contenu de la map errors. 
 		 * */

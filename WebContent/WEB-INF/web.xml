@@ -12,9 +12,36 @@
 	<servlet>
 		<servlet-name>CreationClient</servlet-name>
 		<servlet-class>com.sdzee.tp.servlets.CreationClient</servlet-class>
+		<!-- init-param est pour localiser l'endroit où doit être enregistré définitivement le fichier uploadé par le navigateur.
+		La Servlet l'enregistrera automatiquement à cet emplacement. Attention on peut utiliser un chemin relatif mais il vaut 
+		mieux mettre un chemin absolu (complet) afin d'éviter toute mauvaise interprétation et une Exception.  Il faut 
+		également s'assurer de l'existance de ce dossier. -->
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/Users/julienorrado/Desktop/fichiers/</param-value> <!-- Le fichier sera enregistré ici -->
+		</init-param>
 		<!-- Pas obligatoire mais indique que la servlet sera chargée en numéro 1 lors du démarrage de l'application -->
 		<!-- Cependant très utile lorsqu'il y a plusieurs servlet, cela va du chiffre 0 au plus grand -->
 		<load-on-startup>0</load-on-startup>
+		<!-- multipart-config permet de paramètrer la Servlet pour recevoir des fichiers envoyés depuis le navigateur 
+		et faire fonctionner la méthode getParts() via request.getParts() car request.getParameter() ne fonctionnera pas 
+		avec un envoi de formulaire POST et d'encodage enctype="multipart/form-data" -->
+		<multipart-config>
+			<!-- URL absolue vers un répertoire du système. Cette URL sera utilisée pour stocker temporairement un fichier 
+			lors du traitement des fragments d'une requête, lorsque la taille du fichier est plus grande que la taille spécifiée 
+			dans <file-size-threshold>. Si vous précisez ici un répertoire qui n'existe pas sur le disque, alors Tomcat enverra 
+			une java.io.IOException lorsque vous tenterez d'envoyer un fichier plus gros que cette limite -->
+			<location>/Users/julienorrado/Desktop/fichiers</location>
+			<!-- max-file-size précise la taille maximum en octets autorisée pour un fichier envoyé depuis le navigateur. Si la 
+			taille d'un fichier envoyé dépasse cette limite, le conteneur enverra une exception. En l'occurrence, Tomcat lancera 
+			une IllegalStateException -->
+			<max-file-size>1048576</max-file-size><!-- Correspond à 1 Mo -->
+			<!-- <max-request-size> précise la taille maximum en octets autorisée pour une requête multipart/form-data. Si la 
+			taille totale des données envoyées dans une seule requête dépasse cette limite, le conteneur enverra une exception. -->
+			<max-request-size>10485760</max-request-size><!-- Correspond à 10 Mo -->
+			<!-- Précise la taille en octets à partir de laquelle un fichier reçu sera temporairement stocké sur le disque. -->
+			<file-size-threshold>1048576</file-size-threshold><!-- Correspond à 1 Mo -->
+		</multipart-config>
 	</servlet>
 	
 	<servlet-mapping>
@@ -42,7 +69,15 @@
 	<servlet>
 		<servlet-name>ListeClients</servlet-name>
 		<servlet-class>com.sdzee.tp.servlets.ListeClients</servlet-class>
-		<!-- Pas obligatoire mais indique que la servlet sera chargée en numéro 2 lors du démarrage de l'application -->
+		<!-- init-param est pour localiser l'endroit où doit être enregistré définitivement le fichier téléchargé par le navigateur.
+		La Servlet enregistrera automatiquement ce chemin. Attention on peut utiliser un chemin relatif mais il vaut mieux mettre 
+		un chemin absolu (complet) afin d'éviter toute mauvaise interprétation et une Exception.  Il faut également s'assurer de 
+		l'existance de ce dossier. -->
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/Users/julienorrado/Desktop/fichiers/</param-value> <!-- Le fichier sera enregistré ici -->
+		</init-param>
+		<!-- Pas obligatoire mais indique que la servlet sera chargée en numéro 3 lors du démarrage de l'application -->
 		<!-- Cependant très utile lorsqu'il y a plusieurs servlet, cela va du chiffre 0 au plus grand -->
 		<load-on-startup>2</load-on-startup>
 	</servlet>
@@ -57,7 +92,7 @@
 	<servlet>
 		<servlet-name>ListeCommandes</servlet-name>
 		<servlet-class>com.sdzee.tp.servlets.ListeCommandes</servlet-class>
-		<!-- Pas obligatoire mais indique que la servlet sera chargée en numéro 2 lors du démarrage de l'application -->
+		<!-- Pas obligatoire mais indique que la servlet sera chargée en numéro 4 lors du démarrage de l'application -->
 		<!-- Cependant très utile lorsqu'il y a plusieurs servlet, cela va du chiffre 0 au plus grand -->
 		<load-on-startup>3</load-on-startup>
 	</servlet>

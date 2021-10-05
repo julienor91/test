@@ -17,8 +17,8 @@ import com.sdzee.tp.beans.Client;
 import com.sdzee.tp.forms.CreationClientForm;
 
 /* *
- * L'annotation @WebServlet("/CreationClient") d'origine est remplacé par @WebServlet("/enregistrement-client") 
- * car l'URL définie dans le fichier web.xml a été modifié. La servlet CreationClient correspond à 
+ * L'annotation @WebServlet("/CreationClient") d'origine est remplacée par @WebServlet("/enregistrement-client") 
+ * car l'URL définie dans le fichier web.xml a été modifiée. La servlet CreationClient correspond à 
  * <url-pattern>/enregistrement-client</url-pattern> du fichier web.xml 
  * */
 @WebServlet("/enregistrement-client")
@@ -35,6 +35,7 @@ public class CreationClient extends HttpServlet {
 	private static final String FORM_CUSTOMER_ATTRIBUTE = "creationClientForm";
 	private static final String CUSTOMER_ATTRIBUTE = "client";
 	private static final String ERROR_SENTENCES_MAP_ATTRIBUTE = "errors";
+	public static final String CHEMIN = "chemin";
 	
     private static final String SUCCES_MESSAGE_ATTRIBUTE = "succesMessage";
 	private static final String SUCCES_MESSAGE_SENTENCE = "Félicitation, vos informations ont bien été enregistré !";
@@ -57,6 +58,20 @@ public class CreationClient extends HttpServlet {
 		this.getServletContext().getRequestDispatcher(VIEW_JSP_CREATE).forward(request, response);
 	}
 	
+	/* *
+     * Lecture du paramètre "chemin" passé à la servlet via la déclaration dans le web.xml
+     * <param-value>/Users/julienorrado/Desktop/</param-value>
+     * Soit => /Users/julienorrado/Desktop/
+     * Cette méthode est créé simplement pour envoyer l'information du chemin à la 
+     * servlet CreationCommandeForm afin de pouvoir utiliser la méthode enregistrementClient()
+     * qui demande le paramètre chemin de la servlet CreationClient
+     * */
+	public String recuperationDuChemin(HttpServletRequest request) {
+		String chemin = this.getServletConfig().getInitParameter(CHEMIN);
+		return chemin;
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -65,13 +80,20 @@ public class CreationClient extends HttpServlet {
 		RequestDispatcher dispatcher;
 		contexte = getServletContext();
 		
+		/* *
+	     * Lecture du paramètre "chemin" passé à la servlet via la déclaration dans le web.xml
+	     * <param-value>/Users/julienorrado/Desktop/</param-value>
+	     * Soit => /Users/julienorrado/Desktop/
+	     * */
+	    String chemin = this.getServletConfig().getInitParameter(CHEMIN);
+		
 		CreationClientForm creationClientForm = new CreationClientForm();
 		Client client = new Client();
 		
 		/* *
 		 * Validation des données + création du bean client. 
 		 * */
-		client = creationClientForm.enregistrementClient(request);
+		client = creationClientForm.enregistrementClient(request, chemin);
 		
 		request.setAttribute(FORM_CUSTOMER_ATTRIBUTE, creationClientForm);
 		request.setAttribute(CUSTOMER_ATTRIBUTE, client);

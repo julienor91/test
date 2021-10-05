@@ -17,8 +17,8 @@ import com.sdzee.tp.beans.Commande;
 import com.sdzee.tp.forms.CreationCommandeForm;
 
 /* *
- * L'annotation @WebServlet("/CreationCommande") d'origine est remplacé par @WebServlet("/enregistrement-commande") 
- * car l'URL définie dans le web.xml a été modifié. La servlet CreationCommande correspond à 
+ * L'annotation @WebServlet("/CreationCommande") d'origine est remplacée par @WebServlet("/enregistrement-commande") 
+ * car l'URL définie dans le web.xml a été modifiée. La servlet CreationCommande correspond à 
  * <url-pattern>/enregistrement-commande</url-pattern> du fichier web.xml 
  * */
 @WebServlet("/enregistrement-commande")

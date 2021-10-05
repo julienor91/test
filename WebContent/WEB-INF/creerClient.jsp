@@ -11,7 +11,7 @@
         	<c:import url="/WEB-INF/inc/menu.jsp"/>
         </div>
         <div>
-        	<form method="post" action="<c:url value="/enregistrement-client"/>"><!-- <url-pattern>/enregistrement-client</url-pattern> -->
+        	<form method="post" action="<c:url value="/enregistrement-client"/>" enctype="multipart/form-data"><!-- <url-pattern>/enregistrement-client</url-pattern> -->
         		<c:import url="/WEB-INF/inc/inc_client_form.jsp"/>
         		&nbsp;&nbsp;&nbsp;<input type="submit" value="Valider" />
 	    		<input type="reset" value="Remettre à zéro" />

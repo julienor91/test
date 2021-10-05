@@ -20,6 +20,7 @@
 				<p>Adresse de livraison : <c:out value="${ empty client.adresseClient ? commande.client.adresseClient : client.adresseClient }"/></p>
 				<p>Numéro de téléphone : <c:out value="${ empty client.telephoneClient ? commande.client.telephoneClient : client.telephoneClient }"/></p>
 				<p>Adresse email : <c:out value="${ empty client.emailClient ? commande.client.emailClient : client.emailClient }"/></p>
+				<p>Image : <c:out value="${ empty client.imageClient ? commande.client.imageClient : client.imageClient }"/></p>
 				<input type="button" onclick="window.location.href='<c:url value="/enregistrement-client"/>';" value="Retours"/><br />
 	        </fieldset>
 		</div>

@@ -58,6 +58,10 @@
 		        <input type="email" id="emailClient" name="emailClient" value="<c:out value="${ empty client.emailClient ? commande.client.emailClient : client.emailClient }"/>" size="20" maxlength="60" />
 		        <span class="erreur"><c:out value="${ !empty errors['emailClient'] ? errors['emailClient'] : '' }"/></span>
 		        <br />
+		        
+		        <label for="imageClient">Image</label>
+		        <input type="file" id="imageClient" name="imageClient" value="<c:out value="${ empty client.imageClient ? commande.client.imageClient : client.imageClient }"/>" />
+		        <span class="erreur"><c:out value="${ !empty errors['imageClient'] ? errors['imageClient'] : '' }"/></span>
 	        </div>
 		</fieldset>
 		

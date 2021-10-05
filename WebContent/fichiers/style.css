@@ -98,3 +98,17 @@ th.action {
 	margin-left: 12px;
 	border-style: none;
 }
+
+#imageClient {
+	max-width: 137px;
+}
+
+.imageLink {
+	border-style: none;
+	background-color: inherit;
+}
+
+.imageLink:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
