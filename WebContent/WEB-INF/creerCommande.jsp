@@ -11,7 +11,7 @@
         	<c:import url="/WEB-INF/inc/menu.jsp"/>
         </div>
         <div>
-            <form method="post" action="<c:url value="/enregistrement-commande"/>"><!-- <url-pattern>/enregistrement-commande</url-pattern> -->
+            <form method="post" action="<c:url value="/enregistrement-commande"/>" enctype="multipart/form-data"><!-- <url-pattern>/enregistrement-commande</url-pattern> -->
 				<c:import url="/WEB-INF/inc/inc_client_form.jsp"/>
                 <fieldset>
 					<legend>Informations commande</legend>

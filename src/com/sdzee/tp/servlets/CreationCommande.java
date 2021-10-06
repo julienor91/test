@@ -35,6 +35,7 @@ public class CreationCommande extends HttpServlet {
 	private static final String ERROR_SENTENCES_MAP_ATTRIBUTE = "errors";
 	private static final String FORM_ORDER_ATTRIBUTE = "creationCommandeForm";
 	private static final String ORDER_ATTRIBUTE = "commande";
+	public static final String CHEMIN = "chemin";
     
     private static final String SUCCES_MESSAGE_ATTRIBUTE = "succesMessage";
     private static final String SUCCES_MESSAGE = "Félicitation, vos informations ont bien été enregistré !";
@@ -65,13 +66,21 @@ public class CreationCommande extends HttpServlet {
 		RequestDispatcher dispatcher;
 		contexte = getServletContext();
 		
+		/* *
+	     * Lecture du paramètre "chemin" passé à la servlet via la déclaration dans le web.xml
+	     * <param-value>/Users/julienorrado/Desktop/</param-value>
+	     * Soit => /Users/julienorrado/Desktop/
+	     * ATTENTION à bien mettre enctype="multipart/form-data" dans la jsp
+	     * */
+	    String chemin = this.getServletConfig().getInitParameter(CHEMIN);
+		
 		CreationCommandeForm creationCommandeForm = new CreationCommandeForm();
 		Commande commande = new Commande();
 		
 		/* *
 		 * Validation des données + création du bean commande. 
 		 * */
-		commande = creationCommandeForm.enregistrementCommande(request);
+		commande = creationCommandeForm.enregistrementCommande(request, chemin);
 		
 		request.setAttribute(FORM_ORDER_ATTRIBUTE, creationCommandeForm);
 		request.setAttribute(ORDER_ATTRIBUTE, commande);

@@ -58,20 +58,6 @@ public class CreationClient extends HttpServlet {
 		this.getServletContext().getRequestDispatcher(VIEW_JSP_CREATE).forward(request, response);
 	}
 	
-	/* *
-     * Lecture du paramètre "chemin" passé à la servlet via la déclaration dans le web.xml
-     * <param-value>/Users/julienorrado/Desktop/</param-value>
-     * Soit => /Users/julienorrado/Desktop/
-     * Cette méthode est créé simplement pour envoyer l'information du chemin à la 
-     * servlet CreationCommandeForm afin de pouvoir utiliser la méthode enregistrementClient()
-     * qui demande le paramètre chemin de la servlet CreationClient
-     * */
-	public String recuperationDuChemin(HttpServletRequest request) {
-		String chemin = this.getServletConfig().getInitParameter(CHEMIN);
-		return chemin;
-	}
-	
-	
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -84,9 +70,10 @@ public class CreationClient extends HttpServlet {
 	     * Lecture du paramètre "chemin" passé à la servlet via la déclaration dans le web.xml
 	     * <param-value>/Users/julienorrado/Desktop/</param-value>
 	     * Soit => /Users/julienorrado/Desktop/
+	     * ATTENTION à bien mettre enctype="multipart/form-data" dans la jsp
 	     * */
 	    String chemin = this.getServletConfig().getInitParameter(CHEMIN);
-		
+	    
 		CreationClientForm creationClientForm = new CreationClientForm();
 		Client client = new Client();
 		

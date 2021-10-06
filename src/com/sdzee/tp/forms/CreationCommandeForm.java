@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.myProject.regularExpression.Regex;
 import com.sdzee.tp.beans.Client;
 import com.sdzee.tp.beans.Commande;
-import com.sdzee.tp.servlets.CreationClient;
 
 /* *
  * Ajout de "final" car cette classe ne peut être héritée par une autre classe.
@@ -58,19 +57,10 @@ public final class CreationCommandeForm {
 	/* *
 	 * ********** METHODS **************************************************
 	 * */
-	public Commande enregistrementCommande(HttpServletRequest request) {
+	public Commande enregistrementCommande(HttpServletRequest request, String chemin) {
 		
 		CreationClientForm creationClientForm = new CreationClientForm();
 		Client client = new Client();
-		
-		/* *
-	     * Lecture du paramètre "chemin" passé à la servlet CreationClient via la déclaration dans le web.xml
-	     * <param-value>/Users/julienorrado/Desktop/</param-value>
-	     * Soit => /Users/julienorrado/Desktop/
-	     * On créait donc un objet simplement pour récupérer le chemin.
-	     * */
-		CreationClient creationClient = new CreationClient();
-	    String chemin = creationClient.recuperationDuChemin(request);
 		
 		/* *
 		 * Validation des données + création du bean client. 
